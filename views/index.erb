@@ -30,6 +30,9 @@
       <div>
         <%= comment.body %>
       </div>
+      <div style="margin: 10px 0 0">
+        <a href="/comments/<%= comment.id %>/edit">編集</a>
+      </div>
     </div>
   <% end %>
 </div>

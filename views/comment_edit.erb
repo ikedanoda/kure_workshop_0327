@@ -1,0 +1,23 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>kure_workshop_0327</title>
+</head>
+<body>
+<h1>kure_workshop_0327</h1>
+
+<h2>コメント編集</h2>
+
+<form action="/comments/<%= @comment.id %>/update" method="post">
+  <div>
+    <input type="text" name="comment_title" value="<%= @comment.title %>" placeholder="コメントタイトル" />
+  </div>
+  <div>
+    <textarea name="comment_body" id="" cols="30" rows="10" placeholder="コメント本文"><%= @comment.body %></textarea>
+  </div>
+
+  <input type="submit" value="編集" />
+</form>
+
+</body>
+</html>

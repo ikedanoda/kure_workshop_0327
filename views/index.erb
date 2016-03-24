@@ -2,6 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <title>kure_workshop_0327</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 <h1>kure_workshop_0327</h1>
@@ -32,7 +33,7 @@
 
 <div>
   <% @comments.each do |comment| %>
-    <div style="border: 1px solid #666; padding: 0 20px 20px; margin: 0 0 20px">
+    <div class="comment-item">
       <h3><%= comment.title %></h3>
       <p><small><%= comment.created_at %></small></p>
       <div>

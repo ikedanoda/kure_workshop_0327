@@ -2,6 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <title>kure_workshop_0327</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 <h1>kure_workshop_0327</h1>
@@ -26,9 +27,9 @@
     <td><%= category.id %></td>
     <td><%= category.name %></td>
     <td>
-      <a href="/categories/<%= comment.id %>/edit">編集</a>
+      <a href="/categories/<%= category.id %>/edit">編集</a>
 
-      <form action="/categories/<%= comment.id %>/delete" method="post" style="display: inline;">
+      <form action="/categories/<%= category.id %>/delete" method="post" style="display: inline;">
         <input type="submit" value="削除"/>
       </form>
     </td>

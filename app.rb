@@ -62,13 +62,35 @@ get '/categories' do
 end
 
 get '/categories/new' do
-  @categories = Category.all
-  erb :category_index
+  @category = Category.new
+  erb :category_new
 end
 
 post '/categories' do
-  @categories = Category.all
-  erb :category_index
+  @category = Category.new(name: params[:category_name])
+  if @category.save
+    redirect '/categories'
+  else
+    erb :category_new
+  end
 end
 
+get '/categories/:id/edit' do
+  @category = Category.find(params[:id])
+  erb :category_edit
+end
 
+post '/categories/:id/update' do
+  @category = Category.find(params[:id])
+  if @category.update(name: params[:category_name])
+    redirect '/categories'
+  else
+    erb :category_edit
+  end
+end
+
+post '/categories/:id/delete' do
+  @category = Category.find(params[:id])
+  @category.destroy!
+  redirect '/categories'
+end

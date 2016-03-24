@@ -3,6 +3,8 @@ require 'bundler'
 
 Bundler.require
 
+set :database, {adapter: 'sqlite3', database: 'bbs_workshop.sqlite3'}
+
 get '/' do
   erb :index
 end

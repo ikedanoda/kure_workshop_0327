@@ -20,6 +20,13 @@
 
 <form action="/comments/<%= @comment.id %>/update" method="post">
   <div>
+    <select name="comment_user_id">
+      <% User.all.each do |user| %>
+        <option value="<%= user.id %>"<% if user.id == @comment.user_id %> selected<% end %>><%= user.last_name %> <%= user.first_name %></option>
+      <% end %>
+    </select>
+  </div>
+  <div>
     <input type="text" name="comment_title" value="<%= @comment.title %>" placeholder="コメントタイトル" />
   </div>
   <div>

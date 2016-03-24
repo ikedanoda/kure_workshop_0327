@@ -1,0 +1,33 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>kure_workshop_0327</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<h1>kure_workshop_0327</h1>
+
+<h2>ユーザー新規作成</h2>
+
+<% if @user.errors.present? %>
+  エラーがあります。
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%=message%></li>
+    <% end%>
+  </ul>
+<% end %>
+
+<form action="/users" method="post">
+  <div>
+    <input type="text" name="user_last_name" value="<%= @user.last_name %>" placeholder="姓" />
+  </div>
+  <div>
+    <input type="text" name="user_first_name" value="<%= @user.first_name %>" placeholder="名" />
+  </div>
+
+  <input type="submit" value="作成" />
+</form>
+
+</body>
+</html>

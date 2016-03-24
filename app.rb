@@ -19,14 +19,20 @@ end
 # endpoints
 ## top
 get '/' do
+  @comment = Comment.new
   @comments = Comment.all
   erb :index
 end
 
 ## comments
 post '/comments' do
-  Comment.create!(title: params[:comment_title], body: params[:comment_body])
-  redirect '/'
+  @comment = Comment.new(title: params[:comment_title], body: params[:comment_body])
+  if @comment.save # saveメソッド内でvalidメソッドも動作している
+    redirect '/'
+  else
+    @comments = Comment.all # [erb :index]で使用しているため、これが無いとエラーになる。
+    erb :index
+  end
 end
 
 get '/comments/:id/edit' do
@@ -36,8 +42,11 @@ end
 
 post '/comments/:id/update' do
   @comment = Comment.find(params[:id])
-  @comment.update!(title: params[:comment_title], body: params[:comment_body])
-  redirect '/'
+  if @comment.update(title: params[:comment_title], body: params[:comment_body]) # updateメソッド内でvalidメソッドも動作している
+    redirect '/'
+  else
+    erb :comment_edit
+  end
 end
 
 post '/comments/:id/delete' do

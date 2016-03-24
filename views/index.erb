@@ -8,13 +8,21 @@
 
 <h2>コメント投稿</h2>
 
+<% if @comment.errors.present? %>
+  エラーがあります。
+  <ul>
+    <% @comment.errors.full_messages.each do |message| %>
+      <li><%=message%></li>
+    <% end%>
+  </ul>
+<% end %>
+
 <form action="/comments" method="post">
   <div>
-    <input type="text" name="comment_title" value="" placeholder="コメントタイトル" />
+    <input type="text" name="comment_title" value="<%= @comment.title %>" placeholder="コメントタイトル" />
   </div>
   <div>
-    <textarea name="comment_body" id="" cols="30" rows="10" placeholder="コメント本文">
-    </textarea>
+    <textarea name="comment_body" id="" cols="30" rows="10" placeholder="コメント本文"><%= @comment.body %></textarea>
   </div>
 
   <input type="submit" value="投稿" />

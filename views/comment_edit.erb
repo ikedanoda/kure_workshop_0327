@@ -6,7 +6,7 @@
 <body>
 <h1>kure_workshop_0327</h1>
 
-<h2>コメント投稿</h2>
+<h2>コメント編集</h2>
 
 <% if @comment.errors.present? %>
   エラーがあります。
@@ -17,7 +17,7 @@
   </ul>
 <% end %>
 
-<form action="/comments" method="post">
+<form action="/comments/<%= @comment.id %>/update" method="post">
   <div>
     <input type="text" name="comment_title" value="<%= @comment.title %>" placeholder="コメントタイトル" />
   </div>
@@ -25,26 +25,8 @@
     <textarea name="comment_body" id="" cols="30" rows="10" placeholder="コメント本文"><%= @comment.body %></textarea>
   </div>
 
-  <input type="submit" value="投稿" />
+  <input type="submit" value="編集" />
 </form>
-
-<h2>コメント一覧</h2>
-
-<div>
-  <% @comments.each do |comment| %>
-    <div style="border: 1px solid #666; padding: 0 20px 20px; margin: 0 0 20px">
-      <h3><%= comment.title %></h3>
-      <p><small><%= comment.created_at %></small></p>
-      <div>
-        <%= comment.body %>
-      </div>
-      <div style="margin: 10px 0 0">
-        <a href="/comments/<%= comment.id %>/edit">編集</a>
-      </div>
-    </div>
-  <% end %>
-</div>
-
 
 </body>
 </html>

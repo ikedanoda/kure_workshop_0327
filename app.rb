@@ -27,3 +27,17 @@ post '/comments' do
     erb :index
   end
 end
+
+get '/comments/:id/edit' do
+  @comment = Comment.find(params[:id])
+  erb :comment_edit
+end
+
+post '/comments/:id/update' do
+  @comment = Comment.find(params[:id])
+  if @comment.update(title: params[:comment_title], body: params[:comment_body]) # updateメソッド内でvalidメソッドも動作している
+    redirect '/'
+  else
+    erb :comment_edit
+  end
+end

@@ -19,5 +19,21 @@
 
   <input type="submit" value="投稿" />
 </form>
+
+<h2>コメント一覧</h2>
+
+<div>
+  <% @comments.each do |comment| %>
+    <div style="border: 1px solid #666; padding: 0 20px 20px; margin: 0 0 20px">
+      <h3><%= comment.title %></h3>
+      <p><small><%= comment.created_at %></small></p>
+      <div>
+        <%= comment.body %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
 </body>
 </html>

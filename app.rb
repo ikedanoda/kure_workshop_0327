@@ -4,6 +4,11 @@ require 'bundler'
 Bundler.require
 
 get '/' do
-  @now = Time.now
   erb :index
+end
+
+post '/comments' do
+  @comment_title = params[:comment_title]
+  @comment_body = params[:comment_body]
+  erb :comment_confirm
 end

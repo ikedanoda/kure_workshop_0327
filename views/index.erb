@@ -8,13 +8,13 @@
 
 <h2>コメント投稿</h2>
 
-<form action="">
+<form action="/comments" method="post">
   <div>
-    <input type="text" name="title" value="" placeholder="コメントタイトル" />
+    <input type="text" name="comment_title" value="" placeholder="コメントタイトル" />
   </div>
   <div>
-    <textarea name="body" id="" cols="30" rows="10" placeholder="コメント本文">
-  </textarea>
+    <textarea name="comment_body" id="" cols="30" rows="10" placeholder="コメント本文">
+    </textarea>
   </div>
 
   <input type="submit" value="投稿" />

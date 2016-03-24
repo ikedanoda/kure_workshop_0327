@@ -18,9 +18,17 @@ get '/' do
 end
 
 post '/comments' do
-  @comment_title = params[:comment_title]
-  @comment_body = params[:comment_body]
+  Comment.create!(title: params[:comment_title], body: params[:comment_body])
+  redirect '/'
+end
 
-  Comment.create!(title: @comment_title, body: @comment_body)
+get '/comments/:id/edit' do
+  @comment = Comment.find(params[:id])
+  erb :comment_edit
+end
+
+post '/comments/:id/update' do
+  @comment = Comment.find(params[:id])
+  @comment.update!(title: params[:comment_title], body: params[:comment_body])
   redirect '/'
 end

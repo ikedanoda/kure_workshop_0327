@@ -41,3 +41,9 @@ post '/comments/:id/update' do
     erb :comment_edit
   end
 end
+
+post '/comments/:id/delete' do
+  @comment = Comment.find(params[:id])
+  @comment.destroy!
+  redirect '/'
+end

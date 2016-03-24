@@ -13,14 +13,17 @@ end
 
 # endpoints
 get '/' do
+  @comment = Comment.new
   @comments = Comment.all
   erb :index
 end
 
 post '/comments' do
-  @comment_title = params[:comment_title]
-  @comment_body = params[:comment_body]
-
-  Comment.create!(title: @comment_title, body: @comment_body)
-  redirect '/'
+  @comment = Comment.new(title: params[:comment_title], body: params[:comment_body])
+  if @comment.save
+    redirect '/'
+  else
+    @comments = Comment.all # [erb :index]で使用しているため、これが無いとエラーになる。
+    erb :index
+  end
 end

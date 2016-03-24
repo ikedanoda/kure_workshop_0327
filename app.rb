@@ -32,3 +32,9 @@ post '/comments/:id/update' do
   @comment.update!(title: params[:comment_title], body: params[:comment_body])
   redirect '/'
 end
+
+post '/comments/:id/delete' do
+  @comment = Comment.find(params[:id])
+  @comment.destroy!
+  redirect '/'
+end

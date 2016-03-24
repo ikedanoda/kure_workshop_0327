@@ -32,6 +32,10 @@
       </div>
       <div style="margin: 10px 0 0">
         <a href="/comments/<%= comment.id %>/edit">編集</a>
+
+        <form action="/comments/<%= comment.id %>/delete" method="post" style="display: inline;">
+          <input type="submit" value="削除"/>
+        </form>
       </div>
     </div>
   <% end %>

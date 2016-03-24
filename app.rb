@@ -20,7 +20,7 @@ end
 
 post '/comments' do
   @comment = Comment.new(title: params[:comment_title], body: params[:comment_body])
-  if @comment.save
+  if @comment.save # saveメソッド内でvalidメソッドも動作している
     redirect '/'
   else
     @comments = Comment.all # [erb :index]で使用しているため、これが無いとエラーになる。

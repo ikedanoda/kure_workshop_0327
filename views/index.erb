@@ -2,6 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <title>kure_workshop_0327</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 <h1>kure_workshop_0327</h1>
@@ -22,6 +23,13 @@
     <input type="text" name="comment_title" value="<%= @comment.title %>" placeholder="コメントタイトル" />
   </div>
   <div>
+    <select name="comment_category_id">
+      <% Category.all.each do |category| %>
+        <option value="<%= category.id %>"<% if category.id == @comment.category_id %> selected<% end %>><%= category.name %></option>
+      <% end %>
+    </select>
+  </div>
+  <div>
     <textarea name="comment_body" id="" cols="30" rows="10" placeholder="コメント本文"><%= @comment.body %></textarea>
   </div>
 
@@ -32,9 +40,9 @@
 
 <div>
   <% @comments.each do |comment| %>
-    <div style="border: 1px solid #666; padding: 0 20px 20px; margin: 0 0 20px">
+    <div class="comment-item">
       <h3><%= comment.title %></h3>
-      <p><small><%= comment.created_at %></small></p>
+      <p><small><%= comment.created_at %>&nbsp;&nbsp;category：<%= comment.category.name %></small></p>
       <div>
         <%= comment.body %>
       </div>

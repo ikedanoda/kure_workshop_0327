@@ -1,0 +1,30 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>kure_workshop_0327</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<h1>kure_workshop_0327</h1>
+
+<h2>カテゴリ編集</h2>
+
+<% if @category.errors.present? %>
+  エラーがあります。
+  <ul>
+    <% @category.errors.full_messages.each do |message| %>
+      <li><%=message%></li>
+    <% end%>
+  </ul>
+<% end %>
+
+<form action="/categories/<%= @category.id %>/update" method="post">
+  <div>
+    <input type="text" name="category_name" value="<%= @category.name %>" placeholder="カテゴリ名" />
+  </div>
+
+  <input type="submit" value="作成" />
+</form>
+
+</body>
+</html>

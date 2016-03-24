@@ -1,0 +1,41 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>kure_workshop_0327</title>
+</head>
+<body>
+<h1>kure_workshop_0327</h1>
+
+<h2>カテゴリ一覧</h2>
+
+<div>
+  <a href="/categories/new">新規作成</a>
+</div>
+
+<table>
+  <thead>
+  <tr>
+    <th>id</th>
+    <th>カテゴリ名</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @categories.each do |category| %>
+  <tr>
+    <td><%= category.id %></td>
+    <td><%= category.name %></td>
+    <td>
+      <a href="/categories/<%= comment.id %>/edit">編集</a>
+
+      <form action="/categories/<%= comment.id %>/delete" method="post" style="display: inline;">
+        <input type="submit" value="削除"/>
+      </form>
+    </td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+
+</body>
+</html>

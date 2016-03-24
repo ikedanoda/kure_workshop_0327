@@ -11,12 +11,19 @@ class Comment < ActiveRecord::Base
   validates_presence_of :body
 end
 
+
+class Category < ActiveRecord::Base
+  validates_presence_of :name
+end
+
 # endpoints
+## top
 get '/' do
   @comments = Comment.all
   erb :index
 end
 
+## comments
 post '/comments' do
   Comment.create!(title: params[:comment_title], body: params[:comment_body])
   redirect '/'
@@ -38,3 +45,21 @@ post '/comments/:id/delete' do
   @comment.destroy!
   redirect '/'
 end
+
+## categories
+get '/categories' do
+  @categories = Category.all
+  erb :category_index
+end
+
+get '/categories/new' do
+  @categories = Category.all
+  erb :category_index
+end
+
+post '/categories' do
+  @categories = Category.all
+  erb :category_index
+end
+
+

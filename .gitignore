@@ -3,3 +3,4 @@
 vendor
 .ruby-version
 .bundle
+bbs_workshop.sqlite3

@@ -7,12 +7,15 @@ set :database, {adapter: 'sqlite3', database: 'bbs_workshop.sqlite3'}
 
 # models
 class Comment < ActiveRecord::Base
+  belongs_to :category
   validates_presence_of :title
   validates_presence_of :body
+  validates_presence_of :category_id
 end
 
 
 class Category < ActiveRecord::Base
+  has_many :comments
   validates_presence_of :name
 end
 
@@ -26,7 +29,11 @@ end
 
 ## comments
 post '/comments' do
-  @comment = Comment.new(title: params[:comment_title], body: params[:comment_body])
+  @comment = Comment.new(
+      title: params[:comment_title],
+      body: params[:comment_body],
+      category_id: params[:comment_category_id]
+  )
   if @comment.save # saveメソッド内でvalidメソッドも動作している
     redirect '/'
   else
@@ -42,7 +49,11 @@ end
 
 post '/comments/:id/update' do
   @comment = Comment.find(params[:id])
-  if @comment.update(title: params[:comment_title], body: params[:comment_body]) # updateメソッド内でvalidメソッドも動作している
+  if @comment.update(
+      title: params[:comment_title],
+      body: params[:comment_body],
+      category_id: params[:comment_category_id]
+  ) # updateメソッド内でvalidメソッドも動作している
     redirect '/'
   else
     erb :comment_edit

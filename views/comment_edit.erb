@@ -23,6 +23,13 @@
     <input type="text" name="comment_title" value="<%= @comment.title %>" placeholder="コメントタイトル" />
   </div>
   <div>
+    <select name="comment_category_id">
+      <% Category.all.each do |category| %>
+        <option value="<%= category.id %>"<% if category.id == @comment.category_id %> selected<% end %>><%= category.name %></option>
+      <% end %>
+    </select>
+  </div>
+  <div>
     <textarea name="comment_body" id="" cols="30" rows="10" placeholder="コメント本文"><%= @comment.body %></textarea>
   </div>
 
